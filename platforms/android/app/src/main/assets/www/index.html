@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Project</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+          integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+<!--    <link rel="stylesheet" href="./css/index.css">-->
+    <link rel="stylesheet" href="./css/Nav.css">
+    <link rel="stylesheet" href="./css/notitie.css">
+    <link rel="stylesheet" href="./css/contact.css">
+    <link rel="stylesheet" href="./css/news.css">
+    <script src="https://kit.fontawesome.com/29d9e87fbe.js" crossorigin="anonymous"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+</head>
+<body>
+
+<div id="mySidenav" class="sidenav" draggable="true">
+    <button class="closebtn btn btn-dark" onclick="closeNav()">&times;</button>
+    <a href="#!" data-show="tabNotes" onclick="closeNav()">Notities</a>
+    <a href="#!" data-show="tabNieuws" onclick="closeNav()">Nieuws</a>
+    <a href="#!" data-show="tabContact" onclick="closeNav()">Contact</a>
+    <a href="#!" data-show="tabOver" onclick="closeNav()">Over</a>
+</div>
+
+<span style="font-size:40px;cursor:pointer" onclick="openNav()" id="naamgeven">&#9776; </span>
+
+
+    <div class="container">
+    <div class="row spa" id="tabNotes">
+        <div class="col s12">
+            <h2 class="text-center titel">Notities</h2>
+            <fieldset>
+                <legend>Notitie toevoegen</legend>
+                <input id="inpKey" type="text" placeholder="Titel" required>
+                <br>
+                <br>
+                <textarea id="inpValue" placeholder="Enter Note" required></textarea>
+                <br>
+                <br>
+                <button type="button" class="btn btn-success" id="btnInsert">Opslaan</button>
+            </fieldset>
+            <hr>
+            <fieldset>
+                <legend>Opgeslagen notities</legend>
+                <div id="lsOutput"></div>
+            </fieldset>
+        </div>
+    </div>
+
+
+    <div class="row spa" id="tabNieuws">
+        <div class="col s12">
+            <h2 class="text-center titel">Nieuws</h2>
+
+        </div>
+        <div class="text-center">
+            <div class="spinner-grow " style="width: 15rem; height: 15rem;" role="status">
+                <span class="sr-only">Loading...</span>
+            </div>
+        </div>
+        <div class="col s12" id="news">
+
+        </div>
+        <div id="bottom">
+        <button type="button" id="renew" class="btn btn-lg"><i class="fas fa-redo-alt"></i></button>
+        </div>
+    </div>
+
+    <div class="row spa" id="tabContact">
+        <div class="col s12">
+            <div class="row">
+                <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 text-center">
+                    <h2 class="titel text-center">Contact</h2>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6 col-xs-offset-3">
+                    <form id="contact-form" class="form"  >
+                        <div class="form-group">
+                            <label class="form-label" for="name">Your Name</label>
+                            <input type="text" class="form-control" id="name" name="name" placeholder="Your name"
+                                   tabindex="1" required>
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label" for="email">Your Email</label>
+                            <input type="email" class="form-control" id="email" name="email" placeholder="Your Email"
+                                   tabindex="2" required>
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label" for="subject">Subject</label>
+                            <input type="text" class="form-control" id="subject" name="subject" placeholder="Subject"
+                                   tabindex="3" required>
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label" for="message">Message</label>
+                            <textarea rows="5" cols="50" name="message" class="form-control" id="message"
+                                      placeholder="Message..." tabindex="4" required></textarea>
+                        </div>
+                        <div class="text-center">
+                            <button type="submit" class="btn btn-start-order" id="send" onclick="window.plugins.toast.showLongCenter('gegevens verwerkt!')">Send Message</button>
+                        </div>
+                        <div></div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script>
+        $("#send").click(function () {
+            $.ajax({
+                url: "http://84.197.114.65/db/form.php",
+                type: "post",
+                data: $('#contact-form').serialize(),
+            });
+
+        });
+
+    </script>
+
+    <div class="row spa" id="tabOver">
+        <div class="col s12">
+            <h3 class="titel text-center">Informatie</h3>
+            <h4>Over de app</h4>
+            <p>Dit is een utilities app waarin een plugins verwerkt zitten. Er is namelijk gebruik gemaakt van een
+                toast-plugin en een in-app-browser-plugin. De in app browser wordt gebruikt bij het overzicht van het
+                nieuws om het volledige artikel te tonen en de toast plugin wordt gebruikt tijdens het verzenden van het
+                formulier. Verder zit er ook een api in verwerkt die de nodige informatie van het nieuws ophaalt. Dit is
+                een project voor het vak Cordova van de IT Factory - Thomas More.</p>
+            <hr>
+            <h4>Over mij</h4>
+            <div class="row">
+
+
+                <div class="col-6">
+                    <p>Hallo mijn naam is Iebe Maes. Ik ben 19 jaar en ik ben een student aan de IT Factory van Thomas
+                        More te Geel. Ik ben afkomstig van Beerse en ben altijd al gefascineerd geweest door
+                        informatica.
+                    </p>
+                    <p><b>Email: </b>iebe.1@hotmail.com</p>
+                    <a href="sms://+32471719840">SMS</a> //
+                    <a href="tel:+32471719840">BEL</a>
+                </div>
+                <div class="col-6">
+                    <img src="./img/Foto%20Toledo.jpg" class="img-fluid" alt="foto">
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+        integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+        crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+        integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+        crossorigin="anonymous"></script>
+<script src="cordova.js"></script>
+<script src="js/notes.js"></script>
+<script src="js/nav.js"></script>
+<script src="js/news.js"></script>
+<!--<script src="js/form.js"></script>-->
+<script defer src="js/app.js"></script>
+
+</body>

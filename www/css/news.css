@@ -1,0 +1,36 @@
+#loader {
+    height: 100vh;
+    align-items: center;
+    display: flex;
+    justify-content: center;
+
+}
+
+.progress {
+    display: none;
+}
+
+.errorMsg {
+    font-size: 34px;
+    height: 100vh;
+    align-items: center;
+    display: flex;
+    justify-content: center;
+}
+#bottom button {
+    border-radius: 5px;
+    position: fixed;
+    right: 10%;
+    bottom: 2%;
+    text-align: center;
+    text-decoration: none;
+    background-color: chartreuse;
+}
+card{
+    border: #818181 10px;
+}
+.titel{
+    border-bottom:5px solid black;
+    padding-bottom: 5px;
+
+}
